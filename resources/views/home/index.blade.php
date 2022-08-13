@@ -17,11 +17,18 @@
         <!-- Blog entries-->
         <div class="col-lg-8">
             <!-- Nested row for non-featured blog posts-->
-            @foreach ($posts->chunk(2) as $chposts)
+            @empty($posts->toArray()["data"])
+                <div class="alert alert-danger justify-content-center">
+                  <p>  result Empty</p>
+                </div>
+            @endempty
+
+
+            @foreach ($posts->chunk(2) as $chunkPosts)
 
             <div class="row">
 
-                @foreach ($chposts as $post)
+                @foreach ($chunkPosts as $post)
                     <div class="col-lg-6">
                         <!-- Blog post-->
                         <div class="card mb-4">
