@@ -24,8 +24,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts=Post::paginate(6);
 
+        $posts=Post::query();
+
+        if($search=request("search")){
+            $posts->where("title","LIKE","%".$search."%")
+                ->orWhere("body","LIKE","%".$search."%");
+        }
+
+        $posts=$posts->paginate(6);
         return view('home.index',compact("posts"));
     }
 }
