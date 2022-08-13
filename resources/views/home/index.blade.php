@@ -65,7 +65,7 @@
                 </div>
             </div>
             <!-- Categories widget-->
-            <div class="card mb-4">
+            {{-- <div class="card mb-4">
                 <div class="card-header">Categories</div>
                 <div class="card-body">
                     <div class="row">
@@ -85,7 +85,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
+            @include("layouts.category_widget")
+
             <!-- Side widget-->
             <div class="card mb-4">
                 <div class="card-header">Side Widget</div>

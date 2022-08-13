@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\PostCategory;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -31,8 +32,25 @@ class HomeController extends Controller
             $posts->where("title","LIKE","%".$search."%")
                 ->orWhere("body","LIKE","%".$search."%");
         }
-
+        $postcatgory=PostCategory::all();
         $posts=$posts->paginate(6);
-        return view('home.index',compact("posts"));
+        return view('home.index',compact("posts","postcatgory"));
     }
+
+
+
+
+    public function category(PostCategory $postcategory)
+    {
+        # code...
+        return view("home.category",compact("postcategory"));
+    }
+
+
+    public function post(Post $post)
+    {
+        # code...
+        return $post;
+    }
+
 }

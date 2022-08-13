@@ -15,7 +15,7 @@ class PostFactory extends Factory
     {
         return [
             //
-            "title"=>$this->faker->title(),
+            "title"=>$this->faker->word(),
             "body"=>$this->faker->paragraph(8),
             "slug"=>$this->faker->slug(3),
             "image"=>$this->faker->imageUrl()

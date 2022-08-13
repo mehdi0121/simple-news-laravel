@@ -15,6 +15,10 @@ class PostCategoryFactory extends Factory
     {
         return [
             //
+            "title"=>$this->faker->word(),
+            "slug"=>$this->faker->slug(3),
+            "description"=>$this->faker->paragraph(2),
+            "image"=>$this->faker->imageUrl()
         ];
     }
 }

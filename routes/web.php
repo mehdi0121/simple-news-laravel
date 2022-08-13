@@ -14,7 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::namespace('App\\Http\\Controllers')->group(function (){
-    Route::get("/","HomeController@index");
+
+    Route::get("/","HomeController@index")->name("index");
+    Route::get("/category/{postcategory:slug}","HomeController@category")->name("category.index");
+
+    Route::get("/{post:slug}","HomeController@post")->name("post.single");
+
+
+
 });
 
 
