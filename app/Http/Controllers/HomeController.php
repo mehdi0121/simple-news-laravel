@@ -50,7 +50,7 @@ class HomeController extends Controller
     public function post(Post $post)
     {
         # code...
-        return $post;
+        return view("home.post",compact("post"));
     }
 
 }

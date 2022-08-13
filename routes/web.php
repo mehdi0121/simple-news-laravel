@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::namespace('App\\Http\\Controllers')->group(function (){
 
@@ -26,5 +27,4 @@ Route::namespace('App\\Http\\Controllers')->group(function (){
 
 
 
-Auth::routes();
 

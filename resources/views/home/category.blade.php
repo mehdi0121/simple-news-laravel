@@ -24,12 +24,12 @@
                     <div class="col-lg-4">
                         <!-- Blog post-->
                         <div class="card mb-4">
-                            <a href="#!"><img class="card-img-top" src="{{ $post->image }}" alt="{{ $post->title }}" /></a>
+                            <a href="{{ route("post.single",$post->slug) }}"><img class="card-img-top" src="{{ $post->image }}" alt="{{ $post->title }}" /></a>
                             <div class="card-body">
                                 <div class="small text-muted">{{ $post->updated_at }}</div>
                                 <h2 class="card-title h4">{{ $post->title }}</h2>
                                 <p class="card-text">{{ \Str::limit($post->body,30) }}</p>
-                                <a class="btn btn-primary" href="">Read more →</a>
+                                <a class="btn btn-primary" href="{{ route("post.single",$post->slug) }}">Read more →</a>
                             </div>
                         </div>
                     </div>
