@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\admin\AdminHomeController;
+use App\Http\Controllers\admin\BlogController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,17 +17,17 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
-Route::namespace('App\\Http\\Controllers')->group(function (){
 
-    Route::get("/","HomeController@index")->name("index");
-    Route::get("/category/{postcategory:slug}","HomeController@category")->name("category.index");
-
-    Route::get("/{post:slug}","HomeController@post")->name("post.single");
+    Route::get("/",[HomeController::class,"index"])->name("index");
+    Route::get("/category/{postcategory:slug}",[HomeController::class,"category"])->name("category.index");
 
 
+    Route::prefix("admin")->group(function (){
+        Route::get("/",[AdminHomeController::class,"index"])->name("index.admin");
+        Route::resource("blog",BlogController::class)->names("admin.blog");
 
-});
+    });
 
 
 
-
+    Route::get("/{post:slug}",[HomeController::class,"post"])->name("post.single");
