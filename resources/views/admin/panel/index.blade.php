@@ -10,8 +10,9 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">title</th>
-                    <th scope="col">created_at</th>
-                    <th scope="col">op
+                    <th scope="col">created_at
+                    </th>
+                    <th scope="col">op <a class=" btn btn-success" href="{{ route("admin.blog.create") }}">پست جدید</a>
                     </th>
                   </tr>
                 </thead>

@@ -13,15 +13,16 @@
       @include("layouts.error")
         <div class="col-lg-9">
 
-<form class="mt-2 mb-3" action="{{ route("admin.blog.store") }}" method="POST" enctype="multipart/form-data">
+<form class="mt-2 mb-3" action="{{ route("admin.blog.update",$post->id) }}" method="POST" enctype="multipart/form-data">
   @csrf
+  @method("put")
     <div class="form-group">
       <label for="inputAddress">title</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="title" name="title" >
+      <input type="text" class="form-control" id="inputAddress" value="{{ $post->title }}" placeholder="title" name="title" >
     </div>
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Example textarea</label>
-        <textarea class="ckeditor form-control " name="body" id="exampleFormControlTextarea1" ></textarea>
+        <textarea class="ckeditor form-control " name="body" id="exampleFormControlTextarea1" >{!! $post->body !!}</textarea>
     </div>
 
     <div class="form-group m-3">
@@ -34,14 +35,13 @@
         <label for="inputState">categories</label>
         <select id="inputState" class="js-example-basic-single form-control" name="categories[]" multiple>
             @foreach (\App\Models\PostCategory::all() as $item)
-            <option value="{{ $item->id }}" >{{ $item->title }}</option>
-
+            <option    value="{{ $item->id }}" {{ in_array($item->id,$post->categories()->pluck("id")->toArray())?"selected":"" }}  >{{ $item->title }}</option>
             @endforeach
 
         </select>
     </div>
 
-    <button type="submit" class="btn btn-success">create/button>
+    <button type="submit" class="btn btn-success">update</button>
   </form>
 
 

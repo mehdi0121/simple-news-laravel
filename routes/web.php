@@ -24,7 +24,7 @@ Auth::routes();
 
     Route::prefix("admin")->group(function (){
         Route::get("/",[AdminHomeController::class,"index"])->name("index.admin");
-        Route::resource("blog",BlogController::class)->names("admin.blog");
+        Route::resource("blog",BlogController::class)->names("admin.blog")->parameter("blog","post");
 
     });
 

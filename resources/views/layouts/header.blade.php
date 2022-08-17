@@ -10,4 +10,7 @@
     <link href="{{ asset("css/styles.css") }}" rel="stylesheet" />
     <link href="{{ asset("css/app.css") }}" rel="stylesheet" />
     @yield("head")
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css" rel="stylesheet" type="text/css" />
+
+
 </head>

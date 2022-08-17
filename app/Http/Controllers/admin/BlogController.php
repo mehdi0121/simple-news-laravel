@@ -42,16 +42,21 @@ class BlogController extends Controller
         $validated=$request->validate([
             "title"=>"required|min:3",
             "body"=>"required",
-            "categories"=>"required"
+            "categories"=>"required",
+            "file"=>"image|mimes:png,jpg"
         ]);
 
-        $psot=Post::create([
+        $post=auth()->user()->Posts()->create([
             "title"=>$request->title,
             "body"=>$request->body,
+            "image"=>$request->file->store("public/".date("Y/m/d"))
         ]);
 
+        $post->Categories()->attach($request->categories);
 
+        alert()->success('پست جدید ساخته شد');
 
+        return redirect(route('index.admin'));
 
     }
 
@@ -72,9 +77,10 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
         //
+          return view('admin.article.edit',compact('post'));
     }
 
     /**
@@ -84,9 +90,33 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Post $id)
     {
-        //
+        $validated=$request->validate([
+            "title"=>"required|min:3",
+            "body"=>"required",
+            "categories"=>"required",
+            "file"=>"image|mimes:png,jpg|nullable"
+        ]);
+
+        if ($request->hasFile("file")) {
+            # code...
+
+
+
+
+        }
+
+        $post=auth()->user()->Posts()->create($validated);
+
+        $post->update($validated);
+
+
+        $post->Categories()->sync($request->categories);
+
+        alert()->success('پست جدید ساخته شد');
+
+        return redirect(route('index.admin'));
     }
 
     /**
@@ -95,8 +125,10 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $id)
     {
         //
+
+
     }
 }
