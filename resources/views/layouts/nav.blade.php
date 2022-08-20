@@ -9,7 +9,7 @@
                 <li class="nav-item"><a class="nav-link @yield("active-contact")" href="#!">Contact</a></li>
                 @auth()
                 <li class="btn btn-success ms-2"><a class="nav-link @yield("active-panel")" href="{{ route("index.admin") }}">panel</a></li>
-                <li class="btn btn-danger ms-2"><a class="nav-link @yield("active-contact")" href="{{ route("logout") }}">logout</a></li>
+                <li class="btn btn-error ms-2"><a class="nav-link @yield("active-contact")" href="{{ route("logout") }}">logout</a></li>
                 @else
                 <li class="nav-item"><a class="nav-link @yield("active-contact")" href="{{ route("login") }}">login</a></li>
                 <li class="nav-item"><a class="nav-link @yield("active-contact")" href="{{ route("register") }}">register</a></li>
