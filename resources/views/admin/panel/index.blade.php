@@ -23,8 +23,15 @@
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->created_at }}</td>
                         <td>
-                            <a href="{{ route("admin.blog.edit",$post->id) }}" class="btn btn-danger">edit</a>
-                            <a href="" class="btn btn-warning">delete</a>
+                            <a href="{{ route("admin.blog.edit",$post->id) }}" class="btn btn-warning">edit</a>
+
+                            <form action="{{ route("admin.blog.destroy",$post->id) }}" method="post" >
+                                @csrf
+                                @method("delete")
+                                {{-- <a href="{{  }}" class="btn btn-error">delete</a> --}}
+                                <button class="btn btn-error">delete</button>
+                            </form>
+
                         </td>
                     </tr>
                     @endforeach

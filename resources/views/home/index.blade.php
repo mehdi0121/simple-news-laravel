@@ -32,7 +32,7 @@
                     <div class="col-lg-6">
                         <!-- Blog post-->
                         <div class="card mb-4">
-                            <a href="{{ route("post.single",$post->slug) }}"><img class="card-img-top" src="{{ $post->image }}" alt="{{ $post->title }}" /></a>
+                            <a href="{{ route("post.single",$post->slug) }}"><img class="card-img-top" src="{{ Storage::disk("liara")->url($post->image) }}" alt="{{ $post->title }}" /></a>
                             <div class="card-body">
                                 <div class="small text-muted">{{ $post->updated_at }}</div>
                                 <h2 class="card-title h4">{{ $post->title }}</h2>

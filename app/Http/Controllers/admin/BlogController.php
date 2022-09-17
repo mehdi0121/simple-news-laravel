@@ -44,7 +44,7 @@ class BlogController extends Controller
             "title"=>"required|min:3",
             "body"=>"required",
             "categories"=>"required",
-            "file"=>"image|mimes:png,jpg,gif"
+            "image"=>"image|mimes:png,jpg,gif"
         ]);
 
         $post=auth()->user()->Posts()->create([
@@ -91,25 +91,25 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Post $id)
+    public function update(Request $request,Post $post)
     {
         $validated=$request->validate([
             "title"=>"required|min:3",
             "body"=>"required",
             "categories"=>"required",
-            "file"=>"image|mimes:png,jpg|nullable"
+            "image"=>"mimes:png,jpg|nullable"
         ]);
 
-        if ($request->hasFile("file")) {
+        if ($request->hasFile("image")) {
             # code...
-            $validated["file"]=Storage::disk("liara")->put("images",$request->file("file"));
 
+            Storage::disk("liara")->delete($post->image);
+            $validated["image"]=$request->image->store("public/".date("Y/m/d"),"liara");
         }
-        $post=auth()->user()->Posts()->create($validated);
 
         $post->update($validated);
         $post->Categories()->sync($request->categories);
-        alert()->success('پست جدید ساخته شد');
+        alert()->success('پست جدید بروز شد');
         return redirect(route('index.admin'));
     }
 
@@ -122,7 +122,12 @@ class BlogController extends Controller
     public function destroy(Post $post)
     {
         //
+        Storage::disk("liara")->delete($post->image);
 
+        $post->delete();
+        alert()->success('مقاله مورد نظر با موفقیت حذف شد');
+
+        return back();
 
     }
 }

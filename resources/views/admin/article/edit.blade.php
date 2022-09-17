@@ -27,7 +27,7 @@
 
     <div class="form-group m-3">
       <div class="form-input">
-          <input type="file" class="form-upload-input" name="file">
+          <input type="file" class="form-upload-input" name="image">
       </div>
     </div>
 

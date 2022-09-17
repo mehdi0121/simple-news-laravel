@@ -13,7 +13,7 @@ class AdminHomeController extends Controller
     public function index()
     {
         # code...
-        $posts=Post::all();
+        $posts=Post::latest()->get();
         return view("admin.panel.index",compact("posts"));
     }
 
