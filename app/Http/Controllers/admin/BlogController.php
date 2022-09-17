@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -43,13 +44,13 @@ class BlogController extends Controller
             "title"=>"required|min:3",
             "body"=>"required",
             "categories"=>"required",
-            "file"=>"image|mimes:png,jpg"
+            "file"=>"image|mimes:png,jpg,gif"
         ]);
 
         $post=auth()->user()->Posts()->create([
             "title"=>$request->title,
             "body"=>$request->body,
-            "image"=>$request->file->store("public/".date("Y/m/d"))
+            "image"=>$request->file->store("public/".date("Y/m/d"),"liara")
         ]);
 
         $post->Categories()->attach($request->categories);
@@ -101,21 +102,14 @@ class BlogController extends Controller
 
         if ($request->hasFile("file")) {
             # code...
-
-
-
+            $validated["file"]=Storage::disk("liara")->put("images",$request->file("file"));
 
         }
-
         $post=auth()->user()->Posts()->create($validated);
 
         $post->update($validated);
-
-
         $post->Categories()->sync($request->categories);
-
         alert()->success('پست جدید ساخته شد');
-
         return redirect(route('index.admin'));
     }
 
@@ -125,7 +119,7 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $id)
+    public function destroy(Post $post)
     {
         //
 
