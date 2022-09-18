@@ -53,4 +53,24 @@ class HomeController extends Controller
         return view("home.post",compact("post"));
     }
 
+
+
+   // public function login(Request $request)
+   // {
+        # code...
+        // if (Auth::attemptWhen([
+        //     'email' => $email,
+        //     'password' => $password,
+        // ], function ($user) {
+        //     return $user->isNotBanned();
+        // })) {
+        //     // Authentication was successful...
+        // }
+
+   // }
+
+
+
+
+
 }

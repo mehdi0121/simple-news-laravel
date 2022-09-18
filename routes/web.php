@@ -22,7 +22,7 @@ Auth::routes();
     Route::get("/category/{postcategory:slug}",[HomeController::class,"category"])->name("category.index");
 
 
-    Route::prefix("admin")->group(function (){
+    Route::prefix("admin")->middleware("isAdmin")->group(function (){
         Route::get("/",[AdminHomeController::class,"index"])->name("index.admin");
         Route::resource("blog",BlogController::class)->names("admin.blog")->parameter("blog","post");
 

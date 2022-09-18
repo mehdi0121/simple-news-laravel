@@ -37,4 +37,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+
+
+
+    // if (Auth::attemptWhen([
+    //     'email' => $email,
+    //     'password' => $password,
+    // ], function ($user) {
+    //     return $user->isNotBanned();
+    // })) {
+    //     // Authentication was successful...
+    // }
 }
