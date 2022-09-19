@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -40,13 +42,31 @@ class LoginController extends Controller
 
 
 
+    // protected function login(Request $request)
+    // {
+    //     $this->validateLogin($request);
 
-    // if (Auth::attemptWhen([
-    //     'email' => $email,
-    //     'password' => $password,
-    // ], function ($user) {
-    //     return $user->isNotBanned();
-    // })) {
-    //     // Authentication was successful...
+    //     # code...
+    //     if (Auth::attemptWhen([
+    //         "email"=>$request->email,
+    //         "password"=>$request->password
+    //     ],function ($user){
+    //         return $user->is_ban==false;
+    //     }))
+    //     {
+    //         # code...
+    //         return redirect(route('index'));
+    //     }
+
     // }
+    // protected function validateLogin(Request $request)
+    // {
+    //     $request->validate([
+    //         "email"=>"email|required|string",
+    //         "password"=>"string|required"
+    //     ]);
+
+    // }
+
+
 }

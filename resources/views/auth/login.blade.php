@@ -47,8 +47,15 @@
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
                                     </label>
+
                                 </div>
-                            </div>
+
+                             </div>
+                            @error("ban")
+                            <span class="alert alert-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="row mb-0">

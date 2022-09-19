@@ -28,6 +28,4 @@ Auth::routes();
 
     });
 
-
-
     Route::get("/{post:slug}",[HomeController::class,"post"])->name("post.single");
