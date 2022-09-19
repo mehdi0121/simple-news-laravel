@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -38,4 +40,24 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    // public function render($request,Throwable $exception)
+    // {
+    //     # code...
+
+    //     //Model and Route not found error
+
+    //     if($exception instanceof NotFoundHttpException || $exception instanceof ModelNotFoundException){
+
+    //       storage("liara")->put('404-monitor.txt', $request->fullUrl());
+
+    //      return  parent::render($request,$exception);
+    //     }
+
+    //     return parent::render($request,$exception);
+    // }
+
+
+
+
 }

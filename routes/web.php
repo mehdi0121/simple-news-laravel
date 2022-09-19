@@ -20,7 +20,7 @@ Auth::routes();
 
 
     Route::get("test",function (){
-        return request()->cookie();
+        return session()->all();
        // return storage("liara")->url("public/2022/09/17/4fhTBjOvPCyhX6SUxFNPWZSwRfdgpd4bMUC4pxu4.jpg");
     });
 

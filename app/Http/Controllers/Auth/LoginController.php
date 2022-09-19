@@ -42,31 +42,37 @@ class LoginController extends Controller
 
 
 
-    // protected function login(Request $request)
-    // {
-    //     $this->validateLogin($request);
+    protected function login(Request $request)
+    {
+        $this->validateLogin($request);
+        # code...
+        if (Auth::attemptWhen([
+            "email"=>$request->email,
+            "password"=>$request->password
+        ],function ($user){
+            return $user->is_ban==false;
+        },$request->remember))
+        {
+            # code...
+            return redirect(route('index'));
+        }
 
-    //     # code...
-    //     if (Auth::attemptWhen([
-    //         "email"=>$request->email,
-    //         "password"=>$request->password
-    //     ],function ($user){
-    //         return $user->is_ban==false;
-    //     }))
-    //     {
-    //         # code...
-    //         return redirect(route('index'));
-    //     }
 
-    // }
-    // protected function validateLogin(Request $request)
-    // {
-    //     $request->validate([
-    //         "email"=>"email|required|string",
-    //         "password"=>"string|required"
-    //     ]);
 
-    // }
+        return back()->withErrors([
+            "password"=>"Email or password is incorrect!"
+        ]);
+
+
+    }
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            "email"=>"email|required|string",
+            "password"=>"string|required"
+        ]);
+
+    }
 
 
 }
